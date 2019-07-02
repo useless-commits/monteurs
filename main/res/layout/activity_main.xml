@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddIncidentActivity"
+    android:layout_margin="5dp"
+    >
+    <TextView
+        android:id="@+id/categorie_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Categorie" />
+    <Spinner
+        android:id="@+id/categorie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#cccac9"
+        android:layout_margin="5dp"
+        android:spinnerMode="dropdown"/>
+
+    <TextView
+        android:id="@+id/omschrijving_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Omschrijving" />
+
+    <EditText
+        android:id="@+id/omschrijving"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:lines="5"
+        android:layout_margin="5dp"
+        android:gravity="top"
+        android:inputType="textMultiLine" />
+    <TextView
+        android:id="@+id/foto_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Foto" />
+
+    <Button
+        android:id="@+id/foto_popup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:onClick="showImage"
+        android:background="#5e5b7c"
+        android:layout_margin="5dp"
+        android:text="Bekijk foto" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/foto_toevoegen"
+            android:layout_width="190dp"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content"
+            android:background="#5b94ef"
+            android:text="Foto toevoegen" />
+
+        <Button
+            android:id="@+id/foto_maken"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0b47a5"
+            android:layout_margin="5dp"
+            android:text="Foto maken" />
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/opslaan_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Opslaan" />
+
+    <Button
+        android:id="@+id/opslaan"
+        android:onClick="onSaveClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#a30620"
+        android:layout_margin="5dp"
+        android:text="Incident opslaan" />
+
+</LinearLayout>
+</ScrollView>
