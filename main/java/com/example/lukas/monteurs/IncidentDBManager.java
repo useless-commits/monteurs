@@ -109,6 +109,7 @@ public class IncidentDBManager extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // This is just a terrible idea in general, handling SQL somewhere near the front-end.
         db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME);
         db.execSQL(CREATE_QUERY);
     }
