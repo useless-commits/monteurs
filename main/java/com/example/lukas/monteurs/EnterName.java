@@ -18,7 +18,6 @@ public class EnterName extends AppCompatActivity {
         SharedPreferences pref = getSharedPreferences(MonteurName.PREV, MODE_PRIVATE);
         String monteurName = pref.getString(MonteurName.MONTEUR_NAME_KEY, null);
 
-        //MonteurName exists so we can redirect to home
         if (monteurName != null) {
             Intent home = new Intent(this, Home.class);
             startActivity(home);
