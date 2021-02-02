@@ -26,8 +26,8 @@ public class Home extends AppCompatActivity {
 
         this.dbManagerIncident = new IncidentDBManager(this);
         this.incidenten = new ArrayList<IncidentModel>();
-        incidenten.add(new IncidentModel(22,"123","asdfasdfas", "/storage/emulated/0/Android/data/com.example.lukas.monteurs/files/Pictures/JPEG_20190522_124719_757650843.jpg", 0, 0 ,"asd"));
-        incidenten.add(new IncidentModel(22,"123","asdfasdfas", "/storage/emulated/0/Android/data/com.example.lukas.monteurs/files/Pictures/JPEG_20190522_124719_757650843.jpg", 0, 0 ,"asd"));
+        incidenten.add(new IncidentModel(22,"123","sambal", "/storage/emulated/0/Android/data/com.example.lukas.monteurs/files/Pictures/JPEG_20190522_124719_757650843.jpg", 0, 0 ,"asd"));
+        incidenten.add(new IncidentModel(22,"123","balsam", "/storage/emulated/0/Android/data/com.example.lukas.monteurs/files/Pictures/JPEG_20190522_124719_757650843.jpg", 0, 0 ,"asd"));
 
         incidenten = dbManagerIncident.getAllIncidents();
         this.adapter = new IncidentAdapter(this, incidenten);
@@ -45,16 +45,13 @@ public class Home extends AppCompatActivity {
         int incident_index = (int)view.getTag();
         IncidentModel incidentModel = incidenten.get(incident_index);
 
-        //Remove from list
         incidenten.remove(incident_index);
         adapter.notifyDataSetChanged();
 
-        //Database id to remove
         boolean result = dbManagerIncident.removeIncidentById(incidentModel.id);
     }
 
     public void EmailItem(View view) {
-//        Start email intent for incident.
         IncidentModel incidenttomail = incidenten.get((int)view.getTag());
         startActivity(Intent.createChooser(new EmailIncident(this).CreateEmailIntent(incidenttomail), "Email:"));
     }
