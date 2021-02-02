@@ -61,11 +61,9 @@ public class AddIncidentActivity extends AppCompatActivity implements View.OnCli
 
         Spinner categorie_dropdown= findViewById(R.id.categorie);
 
-        //Dropdown items categorie
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, this.categorieen);
         categorie_dropdown.setAdapter(adapter);
 
-        //Select picture
         Button pickImage = (Button) findViewById(R.id.foto_toevoegen);
         pickImage.setOnClickListener(new View.OnClickListener() {
 
@@ -77,7 +75,6 @@ public class AddIncidentActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
-        //Take picture
         Button takeImage = (Button) findViewById(R.id.foto_maken);
         takeImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,12 +83,10 @@ public class AddIncidentActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
-        //Get location
         ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
     }
 
     private File createImageFile() throws IOException {
-        // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
@@ -101,23 +96,18 @@ public class AddIncidentActivity extends AppCompatActivity implements View.OnCli
                 storageDir      /* directory */
         );
 
-        // Save a file: path for use with ACTION_VIEW intents
         _currentPhotoPath = image.getAbsolutePath();
         return image;
     }
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            // Create the File where the photo should go
             File photoFile = null;
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
-                // Error occurred while creating the File
             }
-            // Continue only if the File was successfully created
             if (photoFile != null) {
                 this.imageUri = FileProvider.getUriForFile(this,
                         "com.example.android.fileprovider",
@@ -177,7 +167,6 @@ public class AddIncidentActivity extends AppCompatActivity implements View.OnCli
                 if(resultCode == RESULT_OK){
                     this.imageUri= imageReturnedIntent.getData();
                     File file = new File(getPath(imageUri));
-                    //We reload the Uri from a file since the above code will make a copy which we can use in our application.
                     this.imageUri = Uri.fromFile(file);
                     Button btn = findViewById(R.id.foto_popup);
                     btn.setEnabled(true);
@@ -201,7 +190,7 @@ public class AddIncidentActivity extends AppCompatActivity implements View.OnCli
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            Toast.makeText(this, "Zet jouw GPS aan zodat we de locatie van het incident kunnen vastleggen", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Zet jouw GPS aan zodat we de locatie van het incident kunnen vastleggen BOOMER", Toast.LENGTH_LONG).show();
         }
         if (this.imageUri == null) {
             Toast.makeText(this, "Voeg een foto toe aan het incident", Toast.LENGTH_SHORT).show();
@@ -234,6 +223,7 @@ public class AddIncidentActivity extends AppCompatActivity implements View.OnCli
 
     }
     private void getLocation() {
+        // This is just terrible
         if (ActivityCompat.checkSelfPermission(AddIncidentActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
                 (AddIncidentActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -291,7 +281,6 @@ public class AddIncidentActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         try{
-            // To save the image when the screen rotates or is in sleep mode.
             if (this.imageUri == null)
                 outState.putSerializable("imageUri", null);
             else
@@ -307,7 +296,6 @@ public class AddIncidentActivity extends AppCompatActivity implements View.OnCli
         Dialog builder = new Dialog(this) {
             @Override
             public boolean onTouchEvent(MotionEvent event) {
-                // Tap anywhere to close dialog.
                 this.dismiss();
                 return true;
             }
