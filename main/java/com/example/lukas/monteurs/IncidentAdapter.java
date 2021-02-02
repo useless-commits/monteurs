@@ -38,10 +38,7 @@ public class IncidentAdapter extends ArrayAdapter<IncidentModel> {
         Button removebtn = (Button) convertView.findViewById(R.id.removebtn);
         Button emailbtn = (Button) convertView.findViewById(R.id.emailIncidentbtn);
 
-
-        //So we can remove it by index.
         removebtn.setTag(position);
-        //So we can retrive the incident by index
         emailbtn.setTag(position);
 
         cateogorie.setText(incidentModel.categorie);
